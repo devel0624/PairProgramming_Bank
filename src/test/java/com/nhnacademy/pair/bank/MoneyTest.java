@@ -33,7 +33,7 @@ class MoneyTest {
         long amount = 1000;
         money = new Money(amount, denomination);
 
-        assertThat(money.getAmount()).isEqualTo(amount);
+        assertThat(money.getActualValue()).isEqualTo(amount);
     }
 
     @Test
@@ -88,6 +88,52 @@ class MoneyTest {
 
         assertThat(money1.add(money1)).isNotEqualTo(money2);
     }
+
+    @Test
+    void Money_Add_toString(){
+        long amount = 1000;
+        Money money1 = new Money(amount, denomination);
+
+        String dollar = "2000$";
+
+        assertThat(money1.add(money1)).hasToString(dollar);
+    }
+    @Test
+    void Money_Sub_BiggerMoney(){
+        Money smallMoney = new Money(1000, denomination);
+        Money bigMoney = new Money(2000, denomination);
+
+        assertThatThrownBy(() -> smallMoney.sub(bigMoney))
+                .isInstanceOf(NegativeAmountException.class);
+    }
+    @Test
+    void Money_Dollar_Decimal(){
+
+        money = new Money(5.25 , denomination);
+
+        assertThat(money).hasToString("5.25$");
+    }
+
+    @Test
+    void Money_Add_Dollar_Decimal(){
+
+        money = new Money(5.25 , denomination);
+        Money money2 = new Money(10.50,denomination);
+
+        assertThat(money.add(money)).isEqualTo(money2);
+    }
+    @Test
+    void Money_sub_Dollar_Decimal(){
+
+        money = new Money(5.25 , denomination);
+        Money money2 = new Money(10.50,denomination);
+
+        assertThat(money2.sub(money)).isEqualTo(money);
+    }
+
+
+
+
 
 
 }

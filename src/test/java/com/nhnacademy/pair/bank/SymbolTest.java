@@ -35,4 +35,5 @@ public class SymbolTest {
         assertThat(symbolCapture.getSymbol("USD")).isEqualTo(symbol);
     }
 
+
 }
