@@ -1,16 +1,19 @@
 package com.nhnacademy.pair.bank;
 
-public class Money implements Currency{
-    long amount;
+public class Money{
+    private final long amount;
 
-    String symbol;
+    private final String symbol;
+    private final String denomination;
 
-    public Money(long amount, String currencyName) {
+    public Money(long amount, String denomination) {
         check_Amount(amount);
         this.amount = amount;
 
         SymbolCapture symbolCapture = new SymbolCapture();
-        this.symbol = symbolCapture.getSymbol(currencyName);
+        this.symbol = symbolCapture.getSymbol(denomination);
+
+        this.denomination = denomination;
     }
 
     private void check_Amount(long amount){
@@ -26,5 +29,21 @@ public class Money implements Currency{
     @Override
     public String toString() {
         return amount + symbol;
+    }
+
+    @Override
+    public boolean equals(Object money) {
+        if( this.denomination.equals( ((Money)money).getDenomination()) ){
+            return this.getAmount() == ((Money)money).getAmount();
+        }
+        return false;
+    }
+
+    public Money add(Money money1) {
+        return  new Money(this.amount + money1.getAmount(), denomination);
+    }
+
+    public String getDenomination() {
+        return denomination;
     }
 }

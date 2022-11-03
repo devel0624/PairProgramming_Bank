@@ -15,7 +15,7 @@ public class MoneyFactoryTest {
     }
 
     @Test
-    void is_Factory_worked(){
+    void is_Factory_Worked(){
 
         long amount = 1000L;
         int CURRENCY_TYPE = 1;

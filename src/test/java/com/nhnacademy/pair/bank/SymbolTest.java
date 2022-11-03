@@ -20,7 +20,7 @@ public class SymbolTest {
     }
 
     @Test
-    void Check_Symbol_ordinal(){
+    void Check_Symbol_Ordinal(){
 
         assertAll(
                 ()-> assertThat(Symbol.WON.ordinal()).isEqualTo(0),
