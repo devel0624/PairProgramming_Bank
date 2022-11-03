@@ -20,7 +20,7 @@ public class MoneyFactoryTest {
         long amount = 1000L;
         int CURRENCY_TYPE = 1;
 
-        Money dollar = new Money(amount, 1);
+//        Money dollar = new Money(amount, 1);
 
 
 //        dollarFactory.getMoney();

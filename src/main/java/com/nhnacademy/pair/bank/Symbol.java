@@ -1,23 +1,20 @@
 package com.nhnacademy.pair.bank;
 
+import java.util.Arrays;
+
 public enum Symbol {
-    WON("W",1),
-    USD("$",2);
+    WON("₩"),
+    USD("$");
 
 
     private final String symbol;
-    private final int code;
-    Symbol(String symbol , int code) {
+    Symbol(String symbol) {
         this.symbol = symbol;
-        this.code = code;
     }
 
     public String getSymbol() {
         return this.symbol;
     }
 
-    public int getCode() {
-        return this.code;
-    }
 }
 
