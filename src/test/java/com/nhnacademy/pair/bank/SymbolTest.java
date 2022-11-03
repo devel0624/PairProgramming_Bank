@@ -24,7 +24,7 @@ public class SymbolTest {
     void Check_Symbol_Ordinal(){
 
         assertAll(
-                ()-> assertThat(Symbol.WON.ordinal()).isEqualTo(0),
+                ()-> assertThat(Symbol.KRW.ordinal()).isEqualTo(0),
                 ()-> assertThat(Symbol.USD.ordinal()).isEqualTo(1)
         );
     }
@@ -46,6 +46,12 @@ public class SymbolTest {
     @Test
     void Check_InvalidValue_denomination(){
         assertThatThrownBy(()-> symbolCapture.checkName("sda")).isInstanceOf(InvalidDenominationException.class);
+    }
+
+    @Test
+    void getMinpoint(){
+        Money money = new Money(1000,"KRW");
+//        assertThat(money.getMinPoint()).isEqualTo(10);
     }
 
 

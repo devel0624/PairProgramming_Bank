@@ -8,12 +8,18 @@ public class Money{
     private double minPoint;
 
     public Money(long amount, String denomination) {
-        check_Amount(amount);
+        checkNegativeAmount(amount);
+
+        SymbolCapture symbolCapture = new SymbolCapture();
+
+        minPoint = (symbolCapture.getExchangeRate(denomination)/100);
+
+
+
         this.amount = amount;
 
         this.denomination = denomination;
 
-        SymbolCapture symbolCapture = new SymbolCapture();
         this.symbol = symbolCapture.getSymbol(denomination);
 
         this.minPoint = 1;
@@ -21,18 +27,25 @@ public class Money{
 
     public Money(double amount, String denomination) {
         this((long)(amount * 100), denomination);
+        checkAllowedDecimal(denomination);
         this.minPoint = 0.01;
     }
 
-    private void check_Amount(long amount){
+    private static void checkAllowedDecimal(String denomination) {
+        if(!denomination.equalsIgnoreCase("USD")){
+            throw new NotAllowedDecimalCurrencyException(denomination);
+        }
+    }
+
+    private void checkNegativeAmount(long amount){
         if(amount < 0){
             throw new NegativeAmountException(String.valueOf(amount));
         }
     }
 
-//    public long getAmount() {
-//        return amount;
-//    }
+    public long getAmount() {
+        return amount;
+    }
 
     @Override
     public String toString() {

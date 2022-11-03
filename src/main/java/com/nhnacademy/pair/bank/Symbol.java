@@ -3,7 +3,7 @@ package com.nhnacademy.pair.bank;
 import java.util.Arrays;
 
 public enum Symbol {
-    WON("₩",1000),
+    KRW("₩",1000),
     USD("$",1);
 
 

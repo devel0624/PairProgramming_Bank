@@ -9,28 +9,44 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 class BankTest {
-
     Bank bank;
+
+    //SUT
     String USD;
-    String WON;
+    String KRW;
+
+    //DOC
+    SymbolCapture symbolCapture;
+    Money money;
 
     @BeforeEach
     void setup(){
         bank = new FakeBank();
+
         USD = "USD";
-        WON = "WON";
+        KRW = "KRW";
 
     }
 
     @Test
     void Bank_Exchange_WONtoUSD(){
-        long amount = 1000;
-        Money won = new Money(amount,WON);
-        Money dollar = new Money(1,USD);
+        long amount = 10;
+        Money won = new Money(amount,KRW);
+        Money dollar = new Money(0.01,USD);
         String USD = "USD";
 
         assertThat(bank.exchange(won,USD)).isEqualTo(dollar);
     }
+    @Test
+    void Bank_Exchange_toString(){
+        long amount = 3000;
+        Money won = new Money(amount,KRW);
+        String dollar = "3.0$";
+
+        assertThat(bank.exchange(won,USD)).hasToString(dollar);
+    }
+
+
 
 }
 class FakeBank implements Bank{

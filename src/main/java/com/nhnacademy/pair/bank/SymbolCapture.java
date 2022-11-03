@@ -28,7 +28,7 @@ public class SymbolCapture {
                 .filter(x -> x.name().equals(denomination))
                 .collect(Collectors.toList());
 
-          if(list.size() == 0){
+          if(list.isEmpty()){
             throw new InvalidDenominationException(denomination);
         }
     }

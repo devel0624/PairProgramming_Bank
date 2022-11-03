@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.mock;
 
 class MoneyTest {
@@ -67,7 +68,7 @@ class MoneyTest {
     void Money_Compare_Another_Denomination(){
         long amount = 1000;
         Money money1 = new Money(amount, denomination);
-        Money money2 = new Money(amount, "WON");
+        Money money2 = new Money(amount, "KRW");
 
         assertThat(money1).isNotEqualTo(money2);
     }
@@ -84,7 +85,7 @@ class MoneyTest {
     void Money_Add_Another_Denomination(){
         long amount = 1000;
         Money money1 = new Money(amount, denomination);
-        Money money2 = new Money(2000, "WON");
+        Money money2 = new Money(2000, "KRW");
 
         assertThat(money1.add(money1)).isNotEqualTo(money2);
     }
@@ -131,9 +132,27 @@ class MoneyTest {
         assertThat(money2.sub(money)).isEqualTo(money);
     }
 
+    @Test
+    void Money_isNotDollar_But_Decimal(){
+
+        assertThatThrownBy(() -> new Money(1000.1,"KRW"))
+                .isInstanceOf(NotAllowedDecimalCurrencyException.class);
+    }
+
+    @Test
+    void Money_Check_Rounds(){
+
+        Money USD1 = new Money(5.255 , "USD");
+        Money KRW1 = new Money(1005,"KRW");
+
+        Money USD2 = new Money(5.25 , "USD");
+        Money KRW2 = new Money(1000,"KRW");
+
+        assertAll(
+                () -> assertThat(USD1).isEqualTo(USD2),
+                () -> assertThat(KRW1).isEqualTo(KRW2)
+        );
 
 
-
-
-
+    }
 }
