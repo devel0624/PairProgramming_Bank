@@ -141,7 +141,7 @@ class MoneyTest {
 
     @Test
     void Money_Check_Rounds(){
-
+        //로직 미완성
         Money USD1 = new Money(5.255 , "USD");
         Money KRW1 = new Money(1005,"KRW");
 

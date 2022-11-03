@@ -3,10 +3,6 @@ package com.nhnacademy.pair.bank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -48,11 +44,6 @@ public class SymbolTest {
         assertThatThrownBy(()-> symbolCapture.checkName("sda")).isInstanceOf(InvalidDenominationException.class);
     }
 
-    @Test
-    void getMinpoint(){
-        Money money = new Money(1000,"KRW");
-//        assertThat(money.getMinPoint()).isEqualTo(10);
-    }
 
 
 }
