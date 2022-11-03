@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class SymbolTest {
@@ -33,6 +34,18 @@ public class SymbolTest {
         String symbol = "$";
 
         assertThat(symbolCapture.getSymbol("USD")).isEqualTo(symbol);
+    }
+
+    @Test
+    void Check_exchangeRate(){
+        double exchangeRate = 1;
+
+        assertThat(symbolCapture.getExchangeRate("USD")).isEqualTo(exchangeRate);
+    }
+
+    @Test
+    void Check_InvalidValue_denomination(){
+        assertThatThrownBy(()-> symbolCapture.checkName("sda")).isInstanceOf(InvalidDenominationException.class);
     }
 
 
