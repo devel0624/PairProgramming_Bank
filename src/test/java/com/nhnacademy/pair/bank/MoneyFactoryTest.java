@@ -23,9 +23,9 @@ public class MoneyFactoryTest {
         Money dollar = new Money(amount, 1);
 
 
-        dollarFactory.getMoney()
+//        dollarFactory.getMoney();
 
-        when().thenReturn(dollar);
+//        when().thenReturn(dollar);
 
 
 
